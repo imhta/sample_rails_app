@@ -1,24 +1,43 @@
-# README
+# sample_rails_app
+This is basic application from [railstutorial](https://www.railstutorial.org/book/toy_app), Here we develop a sample app demo application to show off some of the power of Rails. The purpose is to get a high-level overview of Ruby on Rails programming (and web development in general) by rapidly generating an application using scaffold generators, which create a large amount of functionality automatically.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisite
 
-Things you may want to cover:
+- Ruby 2.6.3
+- Rails 5.2.3
 
-* Ruby version
+## Getting started
 
-* System dependencies
 
-* Configuration
+```
+git clone https://github.com/Abdusaid10/toy_app.git
+cd toy_app
+```
 
-* Database creation
+To get started with the app, clone the repo and then install the needed gems:
 
-* Database initialization
+```
+bundle install --without production
+```
 
-* How to run the test suite
+Next, migrate the database:
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+rails db:migrate
+```
 
-* Deployment instructions
+Finally, run the test suite to verify that everything is working correctly:
 
-* ...
+```
+rails test
+```
+
+If the test suite passes, you'll be ready to run the app in a local server:
+
+```
+rails server
+```
+
+## Author
+
+- [@imhta](https://github.com/imhta)
