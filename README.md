@@ -10,8 +10,8 @@ This is basic application from [railstutorial](https://www.railstutorial.org/boo
 
 
 ```
-git clone https://github.com/Abdusaid10/toy_app.git
-cd toy_app
+git clone https://github.com/imhta/sample_rails_app.git
+cd sample_rails_app
 ```
 
 To get started with the app, clone the repo and then install the needed gems:
