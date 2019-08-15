@@ -72,7 +72,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.12.2)
+    coffee-script-source (1.8.0)
     concurrent-ruby (1.1.5)
     crass (1.0.4)
     duktape (2.3.0.0)
