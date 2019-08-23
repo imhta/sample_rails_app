@@ -90,7 +90,7 @@ Rails.application.configure do
   #   logger.formatter = config.log_formatter
   #   config.logger    = ActiveSupport::TaggedLogging.new(logger)
   # end
-
+  config.force_ssl = true
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
