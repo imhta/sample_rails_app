@@ -6,8 +6,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'bcrypt-ruby', '3.1.0', require: 'bcrypt'
 gem 'rails', '~> 5.2.3'
-gem 'bcrypt-ruby', '3.1.0', :require => 'bcrypt'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -56,8 +56,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'minitest-reporters'
-  gem 'selenium-webdriver'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper', '1.2.0'
 end
