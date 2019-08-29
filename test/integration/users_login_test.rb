@@ -49,11 +49,11 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_select 'a[href=?]', user_path(@user), count: 0
   end
 
-  test "login with remembering" do
+  test 'login with remembering' do
     log_in_as(@user, remember_me: '1')
   end
 
-  test "login without remembering" do
+  test 'login without remembering' do
     # Log in to set the cookie.
     log_in_as(@user, remember_me: '1')
     # Log in again and verify that the cookie is deleted.
