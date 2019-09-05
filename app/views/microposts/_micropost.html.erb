@@ -4,5 +4,7 @@
   <div class="card-text"><%= micropost.content %></div>
   <div class="text-muted">
     <%= time_ago_in_words(micropost.created_at) %> ago.
+    <%= link_to "delete", micropost, method: :delete,
+                                     data: { confirm: "You sure?" } %>
   </div>
 </div>
