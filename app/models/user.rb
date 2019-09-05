@@ -54,7 +54,7 @@ class User < ApplicationRecord
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_columns(reset_digest:  FILL_IN, reset_sent_at: FILL_IN)
+    update_columns(reset_digest:  self.reset_token, reset_sent_at: Time.now)
   end
 
   # Sends password reset email.
