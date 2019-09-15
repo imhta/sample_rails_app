@@ -232,7 +232,7 @@ input {
   a {
     float: left;
     padding: 0 10px;
-    border-left: 1px solid $grayLighter;
+    border-left: 1px solid gray;
     color: gray;
 
     &:first-child {
@@ -242,7 +242,7 @@ input {
 
     &:hover {
       text-decoration: none;
-      color: $blue;
+      color: blue;
     }
   }
 
