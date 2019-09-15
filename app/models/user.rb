@@ -2,6 +2,14 @@
 
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  has_many :relationships, foreign_key: 'follower_id', dependent: :destroy
+  has_many :followed_users, through: :relationships, source: :followed
+
+  has_many :reverse_relationships, foreign_key: 'followed_id',
+                                   class_name: 'Relationship',
+                                   dependent: :destroy
+  
+  has_many :followers, through: :reverse_relationships, source: :follower
 
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
@@ -31,15 +39,18 @@ class User < ApplicationRecord
       update_attribute(:remember_digest, User.digest(remember_token))
     end
   end
+
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
+
     BCrypt::Password.new(digest).is_password?(token)
   end
 
   def forget
     update_attribute(:remember_digest, nil)
   end
+
   # Activates an account.
   def activate
     update_columns(activated: true, activated_at: Time.now)
@@ -50,24 +61,37 @@ class User < ApplicationRecord
     UserMailer.account_activation(self).deliver_now
   end
 
-  
   # Sets the password reset attributes.
   def create_reset_digest
     self.reset_token = User.new_token
-    update_columns(reset_digest:  self.reset_token, reset_sent_at: Time.now)
+    update_columns(reset_digest: reset_token, reset_sent_at: Time.now)
   end
 
   # Sends password reset email.
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
+
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
 
   def feed
-    Micropost.where("user_id = ?", id)
+    Micropost.where('user_id = ?', id)
   end
+
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    relationships.find_by_followed_id(other_user.id).destroy
+  end
+
   private
 
   # Converts email to all lower-case.

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'password_resets/new'
   get 'password_resets/edit'
   get 'sessions/new'
-  default_url_options :host => "localhost:3000"
+  default_url_options host: 'localhost:3000'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
   get '/home', to: 'static_pages#home'
@@ -18,6 +18,13 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   resources :users
   resources :account_activations, only: [:edit]
-  resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :microposts,          only: [:create, :destroy]
+  resources :password_resets,     only: %i[new create edit update]
+  resources :microposts,          only: %i[create destroy]
+  resources :sessions, only: [:new, :create, :destroy] 
+  resources :relationships, only: [:create, :destroy] 
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
 end

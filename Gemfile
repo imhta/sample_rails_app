@@ -8,10 +8,14 @@ ruby '2.6.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'bcrypt-ruby', '3.1.0', require: 'bcrypt'
 gem 'bootstrap-will_paginate', '1.0.0'
+gem 'carrierwave',             '1.2.2'
 gem 'faker', '~> 1.7.3'
+gem 'mini_magick', '4.7.0'
 gem 'rails', '~> 5.2.3'
+
 gem 'carrierwave',             '1.2.2'
 gem 'mini_magick',             '4.9.4'
+
 gem 'will_paginate', '3.1.6'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -54,8 +58,8 @@ group :development do
 end
 
 group :production do
-  gem 'pg' # gem to use in production environment
   gem 'fog', '1.42'
+  gem 'pg' # gem to use in production environment
 end
 
 group :test do
