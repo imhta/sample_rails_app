@@ -2,8 +2,9 @@
 
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
-  has_many :relationships, foreign_key: "follower id", dependent: :destroy 
-  
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy 
+  has_many :followed_users, through: :relationships, source: :followed
+
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save   :downcase_email
   before_create :create_activation_digest
