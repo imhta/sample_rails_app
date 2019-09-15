@@ -33,6 +33,8 @@ class User < ApplicationRecord
       update_attribute(:remember_digest, User.digest(remember_token))
     end
   end
+
+  
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
@@ -69,6 +71,13 @@ class User < ApplicationRecord
 
   def feed
     Micropost.where("user_id = ?", id)
+  end
+
+  def following?(other_user)
+    relationships.find_by_followed_id(other_user.id)
+  end
+  def follow!(other_user)
+     relationships.create!(followed id: other_user.id)
   end
   private
 
